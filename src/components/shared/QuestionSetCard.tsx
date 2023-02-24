@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { QuestionSet } from "./types";
 
 type Props = {
@@ -5,8 +6,14 @@ type Props = {
 };
 
 const QuestionSetCard = ({ questionSet }: Props) => {
+  const navigate = useNavigate()
+
+  const handleCardClick = () => {
+    navigate(`mock-interview/${questionSet.id}`)
+  }
+
   return (
-    <article key={questionSet.id}>
+    <article key={questionSet.id} onClick={handleCardClick}>
       <div className="rounded-lg border-[1px] border-stone-900 px-4 py-2">
         <div className="flex w-full items-center justify-evenly">
           {/* Preview button */}

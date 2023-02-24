@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
   id: string;
-  selectedQuestionSetId: string;
   questionSetIdFavorites: string;
   customQuestionSets: QuestionSet[];
   darkMode: boolean;
@@ -11,7 +10,6 @@ interface UserState {
 
 const initialState: UserState = {
   id: "1",
-  selectedQuestionSetId: "",
   questionSetIdFavorites: "",
   customQuestionSets: [],
   darkMode: false

@@ -20,12 +20,12 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
-                <NavbarLink 
+                {/* <NavbarLink 
                   path="/mock-interview"
                   page="Mock Interview"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
-                />
+                /> */}
                 <NavbarLink 
                   path="/about"
                   page="About"

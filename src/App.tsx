@@ -11,7 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="mock-interview" element={<MockInterview />} />
+          <Route path="mock-interview/:selectedQuestionSetId" element={<MockInterview />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<NoMatch />} />
         </Route>
