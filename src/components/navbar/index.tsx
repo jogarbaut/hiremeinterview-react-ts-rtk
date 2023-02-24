@@ -27,8 +27,26 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                   setSelectedPage={setSelectedPage}
                 /> */}
                 <NavbarLink 
+                  path="/fields"
+                  page="Fields"
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                />
+                <NavbarLink 
                   path="/about"
                   page="About"
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                />
+                <NavbarLink 
+                  path="/favorited"
+                  page="Favorited"
+                  selectedPage={selectedPage}
+                  setSelectedPage={setSelectedPage}
+                />
+                <NavbarLink 
+                  path="/settings"
+                  page="Settings"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />

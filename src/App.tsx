@@ -7,7 +7,7 @@ import NoMatch from "@/pages/noMatch";
 
 function App() {
   return (
-    <div className="app">
+    <div className="app bg-indigo-50">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

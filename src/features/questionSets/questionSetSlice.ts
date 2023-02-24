@@ -54,6 +54,98 @@ const initialState: QuestionSetsState = {
         },
       ],
     },
+    {
+      id: "3",
+      title: "Questions about leadership styles",
+      category: "Project Management",
+      favorite: false,
+      questions: [
+        {
+          id: "987",
+          question: "How would you define your leadership style?",
+          favorite: false,
+        },
+        {
+          id: "654",
+          question: "What would you do if a team member was falling behind in meeting their deadlines?",
+          favorite: false,
+        },
+        {
+          id: "357",
+          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
+          favorite: false,
+        },
+      ],
+    },
+    {
+      id: "4",
+      title: "Questions about leadership styles",
+      category: "Project Management",
+      favorite: false,
+      questions: [
+        {
+          id: "987",
+          question: "How would you define your leadership style?",
+          favorite: false,
+        },
+        {
+          id: "654",
+          question: "What would you do if a team member was falling behind in meeting their deadlines?",
+          favorite: false,
+        },
+        {
+          id: "357",
+          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
+          favorite: false,
+        },
+      ],
+    },
+    {
+      id: "5",
+      title: "Questions about leadership styles",
+      category: "Project Management",
+      favorite: false,
+      questions: [
+        {
+          id: "987",
+          question: "How would you define your leadership style?",
+          favorite: false,
+        },
+        {
+          id: "654",
+          question: "What would you do if a team member was falling behind in meeting their deadlines?",
+          favorite: false,
+        },
+        {
+          id: "357",
+          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
+          favorite: false,
+        },
+      ],
+    },
+    {
+      id: "6",
+      title: "Questions about leadership styles",
+      category: "Project Management",
+      favorite: false,
+      questions: [
+        {
+          id: "987",
+          question: "How would you define your leadership style?",
+          favorite: false,
+        },
+        {
+          id: "654",
+          question: "What would you do if a team member was falling behind in meeting their deadlines?",
+          favorite: false,
+        },
+        {
+          id: "357",
+          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
+          favorite: false,
+        },
+      ],
+    },
   ],
 };
 
