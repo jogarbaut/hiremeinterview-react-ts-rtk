@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { QuestionSet } from "@/components/shared/types";
 
-interface QuestionSetState {
+interface QuestionSetsState {
   value: QuestionSet[];
 }
 
 // Default questions here
-const initialState: QuestionSetState = {
+const initialState: QuestionSetsState = {
   value: [
     {
       id: "1",
@@ -57,10 +57,10 @@ const initialState: QuestionSetState = {
   ],
 };
 
-const questionSetSlice = createSlice({
+const questionSetsSlice = createSlice({
   name: "questionSets",
   initialState,
   reducers: {},
 });
 
-export default questionSetSlice.reducer;
+export default questionSetsSlice.reducer;

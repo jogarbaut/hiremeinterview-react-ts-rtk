@@ -1,7 +1,7 @@
 export enum SelectedPage {
-  Home = "home",
-  About = "about",
-  Decks = "decks",
+  Home = "Home",
+  About = "About",
+  MockInterview = "Mock Interview",
 }
 
 export interface QuestionSet {
