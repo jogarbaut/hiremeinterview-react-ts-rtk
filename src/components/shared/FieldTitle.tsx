@@ -1,13 +1,11 @@
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
-const FieldTitle = ({children}: Props) => {
+const FieldTitle = ({ children }: Props) => {
   return (
-    <h1 className="text-3xl font-bold py-12">
-      {children}
-    </h1>
-  )
-}
+    <h1 className="py-6 text-lg font-bold md:py-12 md:text-3xl">{children}</h1>
+  );
+};
 
-export default FieldTitle
+export default FieldTitle;

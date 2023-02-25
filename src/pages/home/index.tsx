@@ -12,7 +12,7 @@ const Home = () => {
     <section id="home">
       <div className="w-full bg-white">
         <div className="w-5/6 mx-auto max-w-5xl">
-          <FieldTitle>Common Interview Questions</FieldTitle>
+          <FieldTitle>All Fields</FieldTitle>
         </div>
       </div>
       <div className="w-full items-center justify-center bg-indigo-50 py-12">

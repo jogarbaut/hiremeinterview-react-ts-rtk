@@ -38,7 +38,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
-                <NavbarLink 
+                {/* <NavbarLink 
                   path="/favorited"
                   page="Favorited"
                   selectedPage={selectedPage}
@@ -49,7 +49,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                   page="Settings"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
-                />
+                /> */}
               </div>
             </div>
           </div>

@@ -1,57 +1,63 @@
 import { RootState } from "@/app/store";
+import FavoriteToggle from "@/components/shared/FavoriteToggle";
 import FieldTitle from "@/components/shared/FieldTitle";
+import QuestionNavigation from "@/components/shared/QuestionNavigation";
+import Timer from "@/components/shared/Timer";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 type Props = {};
 
 const MockInterview = (props: Props) => {
-  useParams;
   const questionsSets = useSelector(
     (state: RootState) => state.questionSets.value
   );
-
   const { selectedQuestionSetId } = useParams();
+  const [indexCurrentQuestion, setIndexCurrentQuestion] = useState<number>(0);
+  const [indexLastQuestion, setIndexLastQuestion] = useState<number>(1);
 
   const selectedQuestionSet = questionsSets.find(
     (questionsSet) => questionsSet.id === selectedQuestionSetId
   );
 
+  useEffect(() => {
+    if (selectedQuestionSet) {
+      setIndexLastQuestion(selectedQuestionSet.questions.length - 1);
+    }
+  }, []);
+
   return (
     <section id="mockInterview">
       <div className="w-full bg-white">
-        <div className="w-5/6 mx-auto max-w-5xl">
+        <div className="mx-auto w-5/6 max-w-5xl">
           <FieldTitle>Mock Interview</FieldTitle>
         </div>
       </div>
-      <div className="mx-auto w-5/6 max-w-5xl rounded-lg bg-white my-12 px-4 md:py-28 py-8">
+      <div className="mx-auto my-12 w-11/12 max-w-5xl rounded-lg bg-white px-4 py-4 md:py-28 drop-shadow-lg">
         {/* Question text */}
-        <div className="flex items-center justify-center mt-16 mb-32 text-5xl">
-          {selectedQuestionSet && selectedQuestionSet.title}
+        <div className="mx-auto my-8 w-5/6 text-center text-lg sm:text-xl md:my-16 md:text-3xl lg:text-5xl">
+          {selectedQuestionSet &&
+            selectedQuestionSet.questions[indexCurrentQuestion].question}
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col md:flex-row items-center justify-center gap-16">
-          {/* Time Display */}
-          <div className="flex flex-col items-center justify-center gap-2">
-            <div className="font-bold">1:00</div>
-            <div className="font-light">Stopwatch | Countdown | Off</div>
-          </div>
+        <div className="flex flex-col items-center justify-center gap-4 md:flex-row md:justify-evenly">
           {/* Next/Back */}
-          <div className="flex flex-col items-center justify-center gap-2">
-            <div className="flex items-center justify-center gap-2">
-              <div className="font-bold">Left</div>
-              <div className="font-bold">Random</div>
-              <div className="font-bold">Right</div>
-            </div>
-            <div className="font-light">Question Select</div>
+          <div className="grid place-content-center">
+            <QuestionNavigation
+              indexCurrentQuestion={indexCurrentQuestion}
+              indexLastQuestion={indexLastQuestion}
+              setIndexCurrentQuestion={setIndexCurrentQuestion}
+            />
           </div>
-          {/* Question count */}
-          <div className="flex flex-col items-center justify-center gap-2">
-            <div className="flex items-center justify-center gap-2">
-              <div className="font-bold">1 of 5</div>
-            </div>
-            <div className="font-light">Question Number</div>
+          {/* Time Display */}
+          <div className="grid place-content-center">
+            <Timer />
+          </div>
+          {/* Favorite */}
+          <div className="grid place-content-center">
+            <FavoriteToggle />
           </div>
         </div>
       </div>
