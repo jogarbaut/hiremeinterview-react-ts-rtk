@@ -43,7 +43,7 @@ const NewCustomSetForm = (props: Props) => {
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
     let data = [...inputArray];
-    data[index]["question"] = e.target.value;
+    data[index].question = e.target.value;
     setInputArray(data);
   };
 
@@ -155,7 +155,7 @@ const NewCustomSetForm = (props: Props) => {
                 {inputArray.length !== 1 && (
                   <button
                     type="button"
-                    onClick={(e) => handleRemoveInput(index)}
+                    onClick={() => handleRemoveInput(index)}
                     className="rounded-full border-2 border-transparent bg-red-200 px-4 py-2 text-sm font-light transition hover:border-2 hover:border-red-900/50"
                   >
                     Remove

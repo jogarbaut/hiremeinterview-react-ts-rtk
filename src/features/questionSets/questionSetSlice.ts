@@ -46,8 +46,8 @@ const questionSetsSlice = createSlice({
       state.questionSets = [...filteredSets, action.payload]
     },
     // deleteCustomQuestionSet allows custom auestionSet to be deleted
-    deleteCustomQuestionSet: (state, action: PayloadAction<QuestionSet>) => {
-      const { id } = action.payload
+    deleteCustomQuestionSet: (state, action: PayloadAction<string>) => {
+      const id = action.payload
       const filteredSets = state.questionSets.filter(set => set.id !== id)
       state.questionSets = filteredSets
     },

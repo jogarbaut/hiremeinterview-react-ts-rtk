@@ -21,7 +21,18 @@ const QuestionSetCard = ({ questionSet }: Props) => {
     >
       <div className="flex items-center justify-start">
         <div className="text-sm font-light">
-          {questionSet.isCustom ? <div>Edit</div> : <div>&nbsp;</div>}
+          {questionSet.isCustom ? (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`custom-set/edit/${questionSet.id}`)
+              }}
+            >
+              Edit
+            </button>
+          ) : (
+            <div>&nbsp;</div>
+          )}
         </div>
       </div>
       <div className="flex items-center justify-center">
@@ -32,8 +43,8 @@ const QuestionSetCard = ({ questionSet }: Props) => {
         <div className="flex items-center justify-center">
           <button
             onClick={(e) => {
-              handleCardClick()
               e.stopPropagation();
+              handleCardClick();
             }}
             className="rounded-full border-2 border-transparent bg-indigo-200 px-4 py-2 text-sm font-light transition hover:border-2 hover:border-indigo-900/50"
           >
@@ -41,9 +52,7 @@ const QuestionSetCard = ({ questionSet }: Props) => {
           </button>
         </div>
         {/* Question count */}
-        <div
-          className="flex cursor-default items-center justify-center rounded-full border-2 border-transparent bg-slate-200 px-4 py-2 text-sm font-light"
-        >
+        <div className="flex cursor-default items-center justify-center rounded-full border-2 border-transparent bg-slate-200 px-4 py-2 text-sm font-light">
           {questionSet.questions.length} Items
         </div>
         <FavoriteToggle
