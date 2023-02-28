@@ -1,19 +1,6 @@
 export enum SelectedPage {
-  Home = "Home",
+  Sets = "Sets",
+  NewCustomSet = "New Custom Set",
   About = "About",
-  MockInterview = "Mock Interview",
-}
-
-export interface QuestionSet {
-  id: string;
-  title: string;
-  category: string;
-  favorite: boolean;
-  questions: Question[];
-}
-
-export interface Question {
-  id: string;
-  question: string;
-  favorite: boolean;
+  Settings = "Settings",
 }

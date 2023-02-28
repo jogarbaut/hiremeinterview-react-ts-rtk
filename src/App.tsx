@@ -4,14 +4,16 @@ import Layout from "@/Layout";
 import About from "@/pages/about";
 import MockInterview from "@/pages/mockInterview";
 import NoMatch from "@/pages/noMatch";
+import CustomSet from "@/pages/CustomSet";
 
 function App() {
   return (
-    <div className="app bg-indigo-50">
+    <div className="app">
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="mock-interview/:selectedQuestionSetId" element={<MockInterview />} />
+          <Route path="mock-interview/:id" element={<MockInterview />} />
+          <Route path="custom-set" element={<CustomSet />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<NoMatch />} />
         </Route>

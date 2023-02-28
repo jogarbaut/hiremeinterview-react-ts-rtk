@@ -16,19 +16,13 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
               <div className="flex items-center justify-between gap-8 text-sm">
                 <NavbarLink 
                   path="/"
-                  page="Home"
+                  page="Sets"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
-                {/* <NavbarLink 
-                  path="/mock-interview"
-                  page="Mock Interview"
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                /> */}
                 <NavbarLink 
-                  path="/fields"
-                  page="Fields"
+                  path="/custom-set"
+                  page="Custom Set"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
@@ -38,18 +32,12 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
-                {/* <NavbarLink 
-                  path="/favorited"
-                  page="Favorited"
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
                 <NavbarLink 
                   path="/settings"
                   page="Settings"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
-                /> */}
+                />
               </div>
             </div>
           </div>

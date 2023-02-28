@@ -1,158 +1,72 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { QuestionSet } from "@/components/shared/types";
+import { questionSets } from "@/data/questionSets";
+import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
 
+// Define interface for QuestionSetState
 interface QuestionSetsState {
-  value: QuestionSet[];
+  questionSets: QuestionSet[];
 }
 
-// Default questions here
+// Define interface for QuestionSet
+// Interface includes questions property which has type of array of type Question
+export interface QuestionSet {
+  id: string;
+  title: string;
+  questions: Question[];
+  isFavorite: boolean;
+  isCustom: boolean;
+}
+
+// Define interface for Question
+export interface Question {
+  id: string;
+  question: string;
+  isFavorite: boolean;
+  isCustom: boolean;
+}
+
+// Define initial state of questionSets which imports data form 'data' folder
 const initialState: QuestionSetsState = {
-  value: [
-    {
-      id: "1",
-      title: "Basics",
-      category: "General",
-      favorite: false,
-      questions: [
-        {
-          id: "123",
-          question: "Can you please tell me about yourself?",
-          favorite: false,
-        },
-        {
-          id: "147",
-          question: "Can you please tell me 3 of your greatest strengths?",
-          favorite: false,
-        },
-        {
-          id: "159",
-          question: "Can you tell me about a difficult challenge you had to overcome?",
-          favorite: false,
-        },
-      ],
-    },
-    {
-      id: "2",
-      title: "Questions about leadership styles",
-      category: "Project Management",
-      favorite: false,
-      questions: [
-        {
-          id: "987",
-          question: "How would you define your leadership style?",
-          favorite: false,
-        },
-        {
-          id: "654",
-          question: "What would you do if a team member was falling behind in meeting their deadlines?",
-          favorite: false,
-        },
-        {
-          id: "357",
-          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
-          favorite: false,
-        },
-      ],
-    },
-    {
-      id: "3",
-      title: "Questions about leadership styles",
-      category: "Project Management",
-      favorite: false,
-      questions: [
-        {
-          id: "987",
-          question: "How would you define your leadership style?",
-          favorite: false,
-        },
-        {
-          id: "654",
-          question: "What would you do if a team member was falling behind in meeting their deadlines?",
-          favorite: false,
-        },
-        {
-          id: "357",
-          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
-          favorite: false,
-        },
-      ],
-    },
-    {
-      id: "4",
-      title: "Questions about leadership styles",
-      category: "Project Management",
-      favorite: false,
-      questions: [
-        {
-          id: "987",
-          question: "How would you define your leadership style?",
-          favorite: false,
-        },
-        {
-          id: "654",
-          question: "What would you do if a team member was falling behind in meeting their deadlines?",
-          favorite: false,
-        },
-        {
-          id: "357",
-          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
-          favorite: false,
-        },
-      ],
-    },
-    {
-      id: "5",
-      title: "Questions about leadership styles",
-      category: "Project Management",
-      favorite: false,
-      questions: [
-        {
-          id: "987",
-          question: "How would you define your leadership style?",
-          favorite: false,
-        },
-        {
-          id: "654",
-          question: "What would you do if a team member was falling behind in meeting their deadlines?",
-          favorite: false,
-        },
-        {
-          id: "357",
-          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
-          favorite: false,
-        },
-      ],
-    },
-    {
-      id: "6",
-      title: "Questions about leadership styles",
-      category: "Project Management",
-      favorite: false,
-      questions: [
-        {
-          id: "987",
-          question: "How would you define your leadership style?",
-          favorite: false,
-        },
-        {
-          id: "654",
-          question: "What would you do if a team member was falling behind in meeting their deadlines?",
-          favorite: false,
-        },
-        {
-          id: "357",
-          question: "How would you handle a manager asking you to complete work outside of your defined scope?",
-          favorite: false,
-        },
-      ],
-    },
-  ],
+  questionSets: questionSets,
 };
 
+// Create quetionSetsSlice with name, initialState, and reducers parameters
 const questionSetsSlice = createSlice({
   name: "questionSets",
   initialState,
-  reducers: {},
+  reducers: {
+    // addCustomQuestionSet allows new custom questionSet to be added to state
+    addCustomQuestionSet: (state, action: PayloadAction<QuestionSet>) => {
+      console.log('trying to add')
+      state.questionSets.push(action.payload);
+    },
+    // updateCustomQuestionSet allows custom questionSet to be updated
+    updateCustomQuestionSet: (state, action: PayloadAction<QuestionSet>) => {
+      if (!action.payload?.id) return
+      const { id } = action.payload
+      const filteredSets = state.questionSets.filter(set => set.id !== id)
+      state.questionSets = [...filteredSets, action.payload]
+    },
+    // deleteCustomQuestionSet allows custom auestionSet to be deleted
+    deleteCustomQuestionSet: (state, action: PayloadAction<QuestionSet>) => {
+      const { id } = action.payload
+      const filteredSets = state.questionSets.filter(set => set.id !== id)
+      state.questionSets = filteredSets
+    },
+    toggleFavoriteQuestionSet: (state, action: PayloadAction<string>) => {
+      const id = action.payload
+      const set = state.questionSets.find(set => set.id === id)
+      if (set) {
+        set.isFavorite = !set.isFavorite
+      }
+    }
+  },
 });
+
+// Export access methods for state
+export const selectAllQuestionSets = (state: QuestionSetsState) => state.questionSets
+export const selectQuestionSetById = (state: QuestionSetsState, id: string) => state.questionSets.find(set => set.id === id)
+
+// Export questSetsSlice actions
+export const { addCustomQuestionSet, updateCustomQuestionSet, deleteCustomQuestionSet, toggleFavoriteQuestionSet } = questionSetsSlice.actions
 
 export default questionSetsSlice.reducer;
