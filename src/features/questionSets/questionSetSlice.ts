@@ -36,7 +36,6 @@ const questionSetsSlice = createSlice({
   reducers: {
     // addCustomQuestionSet allows new custom questionSet to be added to state
     addCustomQuestionSet: (state, action: PayloadAction<QuestionSet>) => {
-      console.log('trying to add')
       state.questionSets.push(action.payload);
     },
     // updateCustomQuestionSet allows custom questionSet to be updated
