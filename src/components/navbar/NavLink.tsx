@@ -8,7 +8,7 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void
 }
 
-const NavbarLink = ({ path, page, selectedPage, setSelectedPage }: Props) => {
+const NavLink = ({ path, page, selectedPage, setSelectedPage }: Props) => {
   return (
     <Link 
       to={path}
@@ -20,4 +20,4 @@ const NavbarLink = ({ path, page, selectedPage, setSelectedPage }: Props) => {
   )
 }
 
-export default NavbarLink
+export default NavLink

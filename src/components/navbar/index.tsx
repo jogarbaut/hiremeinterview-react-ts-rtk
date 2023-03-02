@@ -1,6 +1,6 @@
 import { SelectedPage } from "@/components/shared/types";
 import { useEffect, useState } from "react";
-import NavbarLink from "./NavbarLink";
+import NavLink from "./NavLink";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -33,25 +33,19 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
           <div className="flex w-full items-center justify-between gap-16">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center justify-between gap-8 text-sm">
-                <NavbarLink
+                <NavLink
                   path="/"
                   page="All Sets"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
-                <NavbarLink
-                  path="/custom-set"
-                  page="New Custom Set"
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-                <NavbarLink
+                <NavLink
                   path="/about"
                   page="About"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
-                <NavbarLink
+                <NavLink
                   path="/settings"
                   page="Settings"
                   selectedPage={selectedPage}

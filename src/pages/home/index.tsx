@@ -6,7 +6,7 @@ import Pagination from "@/components/shared/Pagination";
 import { QuestionSet } from "@/features/questionSets/questionSetSlice";
 import Header from "@/components/shared/Header";
 import ErrorAlert from "@/components/shared/ErrorAlert";
-
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const questionSets = useSelector(
     (state: RootState) => state.questionSets.questionSets
@@ -15,6 +15,8 @@ const Home = () => {
   const [displayFavorites, setDisplayFavorites] = useState<boolean>(false);
   const [displayCustoms, setDisplayCustoms] = useState<boolean>(false);
   const [filteredSets, setFilteredSets] = useState<QuestionSet[]>([]);
+
+  const navigate = useNavigate()
 
   // Handle displayFavorite and displayCustom filters
   useEffect(() => {
@@ -37,7 +39,7 @@ const Home = () => {
   }, [displayFavorites, displayCustoms, questionSets]);
 
   // Pagination
-  const itemsPerPage: number = 6;
+  const itemsPerPage: number = 4;
   const [currentPage, setCurrentPage] = useState<number>(1);
   let indexOfLastItem: number = currentPage * itemsPerPage;
   let indexOfFirstItem: number = indexOfLastItem - itemsPerPage;
@@ -53,7 +55,7 @@ const Home = () => {
     <section id="home" className="h-full">
       <Header>Question Sets</Header>
       <div className="h-full w-full items-center justify-center bg-indigo-50 py-12">
-        <div className="mx-auto w-5/6 max-w-5xl">
+        <div className="mx-auto w-5/6 max-w-5xl flex flex-col gap-12">
           <div className="flex flex-col justify-between gap-6 py-6 md:flex-row">
             <div className="flex items-center justify-center gap-6 md:justify-start">
               <button
@@ -87,14 +89,14 @@ const Home = () => {
               </button>
             </div>
             <div className="flex items-center justify-center md:justify-end">
-              {filteredSets.length > itemsPerPage && (
-                <Pagination
-                  itemsPerPage={itemsPerPage}
-                  totalItems={filteredSets.length}
-                  paginate={paginate}
-                  currentPage={currentPage}
-                />
-              )}
+            <button
+                className="rounded-full border-2 border-transparent bg-orange-200 px-4 py-2 text-sm transition hover:border-2 hover:border-orange-900/50"
+                onClick={() => {
+                  navigate("/custom-set")
+                }}
+              >
+                New Custom Set
+              </button>
             </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
@@ -110,6 +112,16 @@ const Home = () => {
               })
             )}
           </div>
+          <div className="flex items-center justify-center md:justify-end py-6">
+              {filteredSets.length > itemsPerPage && (
+                <Pagination
+                  itemsPerPage={itemsPerPage}
+                  totalItems={filteredSets.length}
+                  paginate={paginate}
+                  currentPage={currentPage}
+                />
+              )}
+            </div>
         </div>
       </div>
     </section>
