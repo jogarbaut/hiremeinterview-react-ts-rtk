@@ -7,11 +7,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-type Props = {};
-
-const NewCustomSetForm = (props: Props) => {
+const NewCustomSetForm = () => {
   const [title, setTitle] = useState<string>("");
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
@@ -61,7 +59,7 @@ const NewCustomSetForm = (props: Props) => {
         isCustom: true,
       })
     );
-    navigate("/");
+    navigate("/")
   };
 
   return (
@@ -128,7 +126,7 @@ const NewCustomSetForm = (props: Props) => {
             </button>
           </div>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {inputArray.map((input, index) => (
             <div
               key={index}

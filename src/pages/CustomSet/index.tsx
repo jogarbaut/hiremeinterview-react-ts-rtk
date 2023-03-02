@@ -1,17 +1,11 @@
-import FieldTitle from "@/components/shared/FieldTitle";
+import Header from "@/components/shared/Header";
 import NewCustomSetForm from "@/pages/CustomSet/NewCustomSetForm";
 
-type Props = {};
-
-const CustomSet = (props: Props) => {
+const CustomSet = () => {
   return (
-    <section id="customSets">
-      <div className="w-full bg-white">
-        <div className="mx-auto w-5/6 max-w-5xl">
-          <FieldTitle>New Custom Set</FieldTitle>
-        </div>
-      </div>
-      <div className="w-full items-center justify-center bg-indigo-50 py-12">
+    <section id="customSets" className="h-full">
+      <Header>New Custom Question Set</Header>
+      <div className="w-full h-full items-center justify-center bg-indigo-50 py-12">
         <div className="mx-auto w-5/6 max-w-5xl">
           <NewCustomSetForm />
         </div>

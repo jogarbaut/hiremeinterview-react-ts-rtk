@@ -1,4 +1,4 @@
-import { QuestionSet, toggleFavoriteQuestionSet } from "@/features/questionSets/questionSetSlice";
+import { toggleFavoriteQuestionSet } from "@/features/questionSets/questionSetSlice";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { useDispatch } from "react-redux";

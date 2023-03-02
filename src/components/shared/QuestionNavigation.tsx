@@ -11,7 +11,7 @@ const QuestionNavigation = ({
   setIndexCurrentQuestion,
   indexLastQuestion,
 }: Props) => {
-  const [previousDisabled, setPreviousDisabled] = useState<boolean>(false);
+  const [previousDisabled, setPreviousDisabled] = useState<boolean>(true);
   const [nextDisabled, setNextDisabled] = useState<boolean>(false);
 
   const handlePreviousQuestion = () => {
@@ -35,23 +35,29 @@ const QuestionNavigation = ({
 
   return (
     <div className="flex items-center justify-between">
-      <button
-        onClick={() => handlePreviousQuestion()}
-        className="rounded-full bg-indigo-200 py-1.5 px-2.5 text-sm disabled:bg-indigo-50 disabled:text-gray-400"
-        disabled={previousDisabled}
-      >
-        &lt;
-      </button>
-      <div className="text-center text-sm font-light">
-        {indexCurrentQuestion + 1} of {indexLastQuestion + 1}
+      <div className="flex-1">
+        <button
+          onClick={() => handlePreviousQuestion()}
+          className="w-full rounded-lg border-2 border-transparent hover:border-slate-400 bg-slate-200 py-1.5 px-5 text-sm disabled:bg-slate-50 disabled:text-secondary transition duration-200 disabled:border-none"
+          disabled={previousDisabled}
+        >
+          &lt;
+        </button>
       </div>
-      <button
-        onClick={() => handleNextQuestion()}
-        className="rounded-full bg-indigo-200 py-1.5 px-2.5 text-sm disabled:bg-indigo-50 disabled:text-gray-400 "
-        disabled={nextDisabled}
-      >
-        &gt;
-      </button>
+      <div className="flex-1">
+        <div className="w-full text-center text-sm font-light">
+          {indexCurrentQuestion + 1} of {indexLastQuestion + 1}
+        </div>
+      </div>
+      <div className="flex-1">
+        <button
+          onClick={() => handleNextQuestion()}
+          className="w-full rounded-lg border-2 border-transparent hover:border-slate-400 bg-slate-200 py-1.5 px-5 text-sm disabled:bg-slate-50 disabled:text-secondary transition duration-200 disabled:border-none"
+          disabled={nextDisabled}
+        >
+          &gt;
+        </button>
+      </div>
     </div>
   );
 };

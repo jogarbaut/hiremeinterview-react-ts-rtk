@@ -1,5 +1,5 @@
 export enum SelectedPage {
-  Sets = "Sets",
+  AllSets = "All Sets",
   NewCustomSet = "New Custom Set",
   About = "About",
   Settings = "Settings",

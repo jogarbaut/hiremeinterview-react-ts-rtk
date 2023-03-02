@@ -1,11 +1,11 @@
 import { RootState } from "@/app/store";
 import FavoriteToggle from "@/components/shared/ToggleFavorite";
-import FieldTitle from "@/components/shared/FieldTitle";
 import QuestionNavigation from "@/components/shared/QuestionNavigation";
 import Timer from "@/components/shared/Timer";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Header from "@/components/shared/Header";
 
 const MockInterview = () => {
   const questionsSets = useSelector(
@@ -30,45 +30,40 @@ const MockInterview = () => {
   }, []);
 
   return (
-    <section id="mockInterview">
-      <div className="w-full bg-white">
+    <section id="mockInterview" className="flex h-full flex-col">
+      <Header>Mock Interview</Header>
+      <div className="flex w-full flex-grow items-center justify-center bg-indigo-50">
         <div className="mx-auto w-5/6 max-w-5xl">
-          <FieldTitle>Mock Interview</FieldTitle>
-        </div>
-      </div>
-      <div className="relative w-full h-full">
-        <div className="relative w-11/12 bg-white dark:bg-slate-500 mx-auto p-16">
-          <div className="grid place-content-end">
-            <FavoriteToggle
-              isFavorite={questionSet?.isFavorite}
-              id={questionSet?.id}
-            />
-          </div>
-          <div className="mx-auto my-8 w-5/6 content-start text-center text-lg sm:text-2xl md:my-16 md:text-3xl lg:text-4xl">
-            {questionSet &&
-              questionSet.questions[indexCurrentQuestion].question}
-          </div>
-          <div
-            className={`${
-              controlsToggled ? "" : "hidden"
-            } flex flex-col content-end items-center justify-center gap-4 transition duration-500`}
-          >
-            <div className="grid place-content-center">
-              <Timer />
-            </div>
-            <div className="w-full">
-              <QuestionNavigation
-                indexCurrentQuestion={indexCurrentQuestion}
-                indexLastQuestion={indexLastQuestion}
-                setIndexCurrentQuestion={setIndexCurrentQuestion}
+          <div className="my-12 flex w-full flex-col gap-12 rounded-lg bg-white p-12">
+            <div className="flex w-full items-center justify-end">
+              <FavoriteToggle
+                isFavorite={questionSet?.isFavorite}
+                id={questionSet?.id}
               />
             </div>
+            <div className="flex items-center justify-center text-center text-lg sm:text-2xl md:my-16 md:text-3xl lg:text-4xl">
+              {questionSet &&
+                questionSet.questions[indexCurrentQuestion].question}
+            </div>
+            <div
+              className={`${
+                controlsToggled ? "" : "hidden"
+              } flex flex-col items-center justify-center gap-4 transition duration-500`}
+            >
+              <div className="mx-auto w-full">
+                <Timer />
+              </div>
+              <div className="mx-auto w-full">
+                <QuestionNavigation
+                  indexCurrentQuestion={indexCurrentQuestion}
+                  indexLastQuestion={indexLastQuestion}
+                  setIndexCurrentQuestion={setIndexCurrentQuestion}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      {/* <div className="mx-auto my-12 flex w-11/12 max-w-5xl flex-col gap-12 rounded-lg bg-white px-4 py-4 drop-shadow-lg md:py-28">
-
-      </div> */}
     </section>
   );
 };
