@@ -20,7 +20,6 @@ const Home = () => {
 
   // Handle displayFavorite and displayCustom filters
   useEffect(() => {
-    setCurrentPage(1);
     if (!displayFavorites && !displayCustoms) {
       setFilteredSets(questionSets);
     } else if (displayFavorites) {
@@ -37,6 +36,10 @@ const Home = () => {
       );
     }
   }, [displayFavorites, displayCustoms, questionSets]);
+
+  useEffect(() => {
+    setCurrentPage(1)
+  }, [displayFavorites, displayCustoms])
 
   // Pagination
   const itemsPerPage: number = 4;

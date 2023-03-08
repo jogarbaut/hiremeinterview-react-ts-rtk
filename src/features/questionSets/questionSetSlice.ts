@@ -1,5 +1,5 @@
 import { questionSets } from "@/data/questionSets";
-import { createSlice, nanoid, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Define interface for QuestionSetState
 interface QuestionSetsState {
@@ -25,8 +25,9 @@ export interface Question {
 }
 
 // Define initial state of questionSets which imports data form 'data' folder
+const questionSetJSON = localStorage.getItem("questionSet")
 const initialState: QuestionSetsState = {
-  questionSets: questionSets,
+  questionSets: questionSetJSON !== null ? (JSON.parse(questionSetJSON))["questionSets"] : questionSets
 };
 
 // Create quetionSetsSlice with name, initialState, and reducers parameters
