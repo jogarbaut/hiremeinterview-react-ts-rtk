@@ -9,7 +9,7 @@ import Header from "@/components/shared/Header";
 
 const MockInterview = () => {
   const questionsSets = useSelector(
-    (state: RootState) => state.questionSets.questionSets
+    (state: RootState) => state.customQuestionSets.customQuestionSets
   );
   const { id } = useParams();
 

@@ -2,7 +2,7 @@ import {
   updateCustomQuestionSet,
   Question,
   deleteCustomQuestionSet,
-} from "@/features/questionSets/questionSetSlice";
+} from "@/features/customQuestionSets/customQuestionSetsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,7 @@ const EditCustomSetForm = (props: Props) => {
   const [questionSetId, setQuestionSetId] = useState<string>("")
 
   const questionsSets = useSelector(
-    (state: RootState) => state.questionSets.questionSets
+    (state: RootState) => state.customQuestionSets.customQuestionSets
   );
 
   const { id } = useParams();
@@ -62,7 +62,6 @@ const EditCustomSetForm = (props: Props) => {
     index: number,
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    console.log('trying to edit')
     let data = [...inputArray];
     data[index] = {...data[index], question: e.target.value}
     setInputArray(data);

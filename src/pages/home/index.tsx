@@ -1,45 +1,53 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
-import QuestionSetCard from "@/components/shared/QuestionSetCard";
+import CustomQuestionSetCard from "@/components/shared/CustomQuestionSetCard";
 import { useEffect, useState } from "react";
 import Pagination from "@/components/shared/Pagination";
-import { QuestionSet } from "@/features/questionSets/questionSetSlice";
+import { CustomQuestionSet } from "@/features/customQuestionSets/customQuestionSetsSlice";
 import Header from "@/components/shared/Header";
 import ErrorAlert from "@/components/shared/ErrorAlert";
 import { useNavigate } from "react-router-dom";
+import { HireMeQuestionSet } from "@/features/hireMeQuestionSets/hireMeQuestionSets";
+
 const Home = () => {
-  const questionSets = useSelector(
-    (state: RootState) => state.questionSets.questionSets
+  const hireMeQuestionSets = useSelector(
+    (state: RootState) => state.hireMeQuestionSets.hireMeQuestionSets
+  )
+
+  const customQuestionSets = useSelector(
+    (state: RootState) => state.customQuestionSets.customQuestionSets
   );
 
   const [displayFavorites, setDisplayFavorites] = useState<boolean>(false);
-  const [displayCustoms, setDisplayCustoms] = useState<boolean>(false);
-  const [filteredSets, setFilteredSets] = useState<QuestionSet[]>([]);
+  const [filteredSets, setFilteredSets] = useState<HireMeQuestionSet[]>([]);
+  const [displayCustomFavorites, setDisplayCustomFavorites] = useState<boolean>(false);
+  const [filteredCustomSets, setFilteredCustomSets] = useState<CustomQuestionSet[]>([]);
 
   const navigate = useNavigate()
 
-  // Handle displayFavorite and displayCustom filters
+  // Handle displayFavorite filter for hireMeQuestionSets
   useEffect(() => {
-    if (!displayFavorites && !displayCustoms) {
-      setFilteredSets(questionSets);
-    } else if (displayFavorites) {
-      setFilteredSets(
-        questionSets.filter((set) => (set.isFavorite) === true)
-      );
-    } else if (displayCustoms) {
-      setFilteredSets(
-        questionSets.filter((set) => (set.isCustom) === true)
-      );
+    if (!displayFavorites) {
+      setFilteredSets(hireMeQuestionSets);
     } else {
       setFilteredSets(
-        questionSets.filter((set) => (set.isFavorite && set.isCustom) === true)
+        hireMeQuestionSets.filter((set) => (set.isFavorite) === true)
       );
     }
-  }, [displayFavorites, displayCustoms, questionSets]);
+  }, [displayFavorites, hireMeQuestionSets]);
+
+  // Handle displayFavorite filter for customQuestionSets
+  useEffect(() => {
+    if (!displayCustomFavorites) {
+      setFilteredCustomSets(customQuestionSets)
+    } else {
+      setFilteredCustomSets(customQuestionSets.filter((set) => (set.isFavorite) === true))
+    }
+  })
 
   useEffect(() => {
     setCurrentPage(1)
-  }, [displayFavorites, displayCustoms])
+  }, [displayFavorites])
 
   // Pagination
   const itemsPerPage: number = 4;
@@ -61,6 +69,7 @@ const Home = () => {
         <div className="mx-auto w-5/6 max-w-5xl flex flex-col gap-12">
           <div className="flex flex-col justify-between gap-6 py-6 md:flex-row">
             <div className="flex items-center justify-center gap-6 md:justify-start">
+              <h2>HireMe Question Sets</h2>
               <button
                 className={`${
                   !displayCustoms && !displayFavorites
@@ -111,7 +120,7 @@ const Home = () => {
               </div>
             ) : (
               currentItems.map((set) => {
-                return <QuestionSetCard key={set.id} questionSet={set} />;
+                return <CustomQuestionSetCard key={set.id} questionSet={set} />;
               })
             )}
           </div>

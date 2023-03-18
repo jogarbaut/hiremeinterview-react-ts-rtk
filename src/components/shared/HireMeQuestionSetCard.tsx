@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import { QuestionSet } from "@/features/questionSets/questionSetSlice";
+import { CustomQuestionSet } from "@/features/customQuestionSets/customQuestionSetsSlice";
 import FavoriteToggle from "./ToggleFavorite";
 
 type Props = {
-  questionSet: QuestionSet;
+  questionSet: CustomQuestionSet;
 };
 
-const QuestionSetCard = ({ questionSet }: Props) => {
+const HireMeQuestionSetCard = ({ questionSet }: Props) => {
   const navigate = useNavigate();
 
   const handleCardClick = () => {
@@ -60,4 +60,4 @@ const QuestionSetCard = ({ questionSet }: Props) => {
   );
 };
 
-export default QuestionSetCard;
+export default HireMeQuestionSetCard;

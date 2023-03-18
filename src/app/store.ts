@@ -3,14 +3,15 @@ import {
   createListenerMiddleware,
   isAnyOf,
 } from "@reduxjs/toolkit";
-import questionSetsReducer from "../features/questionSets/questionSetSlice";
+import customQuestionSetsReducer from "../features/customQuestionSets/customQuestionSetsSlice";
 import usersReducer from "@/features/users/usersSlice";
 import {
   addCustomQuestionSet,
   updateCustomQuestionSet,
   deleteCustomQuestionSet,
   toggleFavoriteQuestionSet,
-} from "@/features/questionSets/questionSetSlice";
+} from "@/features/customQuestionSets/customQuestionSetsSlice";
+import hireMeQuestionSetsReducer, { toggleFavoriteHireMeQuestionSet } from "../features/hireMeQuestionSets/hireMeQuestionSets"
 
 const listenerMiddleware = createListenerMiddleware();
 
@@ -24,13 +25,21 @@ listenerMiddleware.startListening({
   effect: (action, listenerApi) =>
     localStorage.setItem(
       "questionSet",
-      JSON.stringify((listenerApi.getState() as RootState).questionSets)
+      JSON.stringify((listenerApi.getState() as RootState).customQuestionSets)
     ),
 });
 
+listenerMiddleware.startListening({
+  matcher: isAnyOf(
+    toggleFavoriteHireMeQuestionSet
+  ),
+  effect: (action, listenerApi) => localStorage.setItem("hireMeQuestionSetFavorites", JSON.stringify((listenerApi.getState() as RootState).hireMeQuestionSets))
+})
+
 export const store = configureStore({
   reducer: {
-    questionSets: questionSetsReducer,
+    customQuestionSets: customQuestionSetsReducer,
+    hireMeQuestionSets: hireMeQuestionSetsReducer,
     users: usersReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(listenerMiddleware.middleware)

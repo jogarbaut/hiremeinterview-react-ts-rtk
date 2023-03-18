@@ -1,7 +1,7 @@
 import {
   addCustomQuestionSet,
   Question,
-} from "@/features/questionSets/questionSetSlice";
+} from "@/features/customQuestionSets/customQuestionSetsSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -14,7 +14,7 @@ const NewCustomSetForm = () => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
   const [inputArray, setInputArray] = useState<Question[]>([
-    { id: nanoid(), question: "", isFavorite: false, isCustom: true },
+    { id: nanoid(), question: "", isCustom: true },
   ]);
 
   const dispatch = useDispatch();
@@ -24,7 +24,6 @@ const NewCustomSetForm = () => {
     let newInput = {
       id: nanoid(),
       question: "",
-      isFavorite: false,
       isCustom: true,
     };
     setInputArray([...inputArray, newInput]);
