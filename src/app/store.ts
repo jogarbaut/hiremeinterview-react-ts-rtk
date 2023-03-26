@@ -24,7 +24,7 @@ listenerMiddleware.startListening({
   ),
   effect: (action, listenerApi) =>
     localStorage.setItem(
-      "questionSet",
+      "customQuestionSets",
       JSON.stringify((listenerApi.getState() as RootState).customQuestionSets)
     ),
 });
