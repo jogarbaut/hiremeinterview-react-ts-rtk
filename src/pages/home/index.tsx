@@ -54,7 +54,11 @@ const Home = () => {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [displayFavorites, displayCustomFavorites]);
+  }, [displayFavorites]);
+
+  useEffect(() => {
+    setCustomCurrentPage(1);
+  }, [displayCustomFavorites]);
 
   // Pagination for hireMeQuestionSets
   const itemsPerPage: number = 4;
@@ -63,6 +67,13 @@ const Home = () => {
   let indexOfFirstItem: number = indexOfLastItem - itemsPerPage;
   let currentItems = filteredSets?.slice(indexOfFirstItem, indexOfLastItem);
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
+  // Pagination for customQuestionSets
+  const [customCurrentPage, setCustomCurrentPage] = useState<number>(1)
+  let customIndexOfLastItem: number = customCurrentPage * itemsPerPage
+  let customIndexOfFirstItem: number = customIndexOfLastItem - itemsPerPage
+  let customCurrentItems = filteredCustomSets?.slice(customIndexOfFirstItem, customIndexOfLastItem)
+  const customPaginate = (pageNumber: number) => setCustomCurrentPage(pageNumber)
 
   const activefilterStyles: string = "bg-indigo-200 hover:border-transparent";
   const nonActiveFilterStyles: string = "bg-slate-200 text-slate-400";
@@ -132,17 +143,17 @@ const Home = () => {
             </div>
           </div>
           <div className="grid gap-6 md:grid-cols-2">
-            {filteredCustomSets.map((set) => {
+            {customCurrentItems.map((set) => {
               return <CustomQuestionSetCard key={set.id} questionSet={set} />;
             })}
           </div>
           <div className="flex items-center justify-center py-6 md:justify-end">
-            {filteredSets.length > itemsPerPage && (
+            {filteredCustomSets.length > itemsPerPage && (
               <Pagination
                 itemsPerPage={itemsPerPage}
-                totalItems={filteredSets.length}
-                paginate={paginate}
-                currentPage={currentPage}
+                totalItems={filteredCustomSets.length}
+                paginate={customPaginate}
+                currentPage={customCurrentPage}
               />
             )}
           </div>
