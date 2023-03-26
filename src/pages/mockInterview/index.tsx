@@ -1,5 +1,5 @@
 import { RootState } from "@/app/store";
-import FavoriteToggle from "@/components/shared/ToggleFavorite";
+import FavoriteToggle from "@/components/shared/FavoriteToggle";
 import QuestionNavigation from "@/components/shared/QuestionNavigation";
 import Timer from "@/components/shared/Timer";
 import { useEffect, useState } from "react";
@@ -8,12 +8,19 @@ import { useParams } from "react-router-dom";
 import Header from "@/components/shared/Header";
 
 const MockInterview = () => {
-  const questionsSets = useSelector(
-    (state: RootState) => state.customQuestionSets.customQuestionSets
-  );
   const { id } = useParams();
+  let questionSets
+  if (id?.startsWith("cus-")){
+    questionSets = useSelector(
+      (state: RootState) => state.customQuestionSets.customQuestionSets
+    );
+  } else {
+    questionSets = useSelector(
+      (state: RootState) => state.hireMeQuestionSets.hireMeQuestionSets
+    )
+  }
 
-  const questionSet = questionsSets.find(
+  const questionSet = questionSets.find(
     (questionsSet) => questionsSet.id === id
   );
 

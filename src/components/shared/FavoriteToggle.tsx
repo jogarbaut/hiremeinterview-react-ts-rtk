@@ -1,4 +1,5 @@
 import { toggleFavoriteQuestionSet } from "@/features/customQuestionSets/customQuestionSetsSlice";
+import { toggleFavoriteHireMeQuestionSet } from "@/features/hireMeQuestionSets/hireMeQuestionSetsSlice";
 import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
 import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { useDispatch } from "react-redux";
@@ -12,7 +13,11 @@ const FavoriteToggle = ({ isFavorite, id }: Props) => {
   const dispatch = useDispatch();
 
   const handleToggle = () => {
-    dispatch(toggleFavoriteQuestionSet(id));
+    if(id.startsWith("cus-")){
+      dispatch(toggleFavoriteQuestionSet(id));
+    } else {
+      dispatch(toggleFavoriteHireMeQuestionSet(id))
+    }
   };
 
   return (
@@ -20,7 +25,6 @@ const FavoriteToggle = ({ isFavorite, id }: Props) => {
       onClick={(e) => {
         handleToggle();
         e.stopPropagation();
-        
       }}
       type="button"
       className="flex h-auto items-center justify-center rounded-full border-2 border-transparent bg-yellow-200 px-4 py-2 text-sm transition hover:border-2 hover:border-yellow-900/50"

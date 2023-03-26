@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { CustomQuestionSet } from "@/features/customQuestionSets/customQuestionSetsSlice";
-import FavoriteToggle from "./ToggleFavorite";
+import FavoriteToggle from "./FavoriteToggle";
 
 type Props = {
   questionSet: CustomQuestionSet;

@@ -11,7 +11,7 @@ import {
   deleteCustomQuestionSet,
   toggleFavoriteQuestionSet,
 } from "@/features/customQuestionSets/customQuestionSetsSlice";
-import hireMeQuestionSetsReducer, { toggleFavoriteHireMeQuestionSet } from "../features/hireMeQuestionSets/hireMeQuestionSets"
+import hireMeQuestionSetsReducer, { toggleFavoriteHireMeQuestionSet } from "../features/hireMeQuestionSets/hireMeQuestionSetsSlice"
 
 const listenerMiddleware = createListenerMiddleware();
 

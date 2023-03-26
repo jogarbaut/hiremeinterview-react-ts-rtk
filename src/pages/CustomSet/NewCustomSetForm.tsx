@@ -14,7 +14,7 @@ const NewCustomSetForm = () => {
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
   const [displayError, setDisplayError] = useState<boolean>(false);
   const [inputArray, setInputArray] = useState<Question[]>([
-    { id: nanoid(), question: "", isCustom: true },
+    { id: `cus-${nanoid()}}`, question: "", isCustom: true },
   ]);
 
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const NewCustomSetForm = () => {
 
   const handleAddInput = () => {
     let newInput = {
-      id: nanoid(),
+      id: `cus-${nanoid()}}`,
       question: "",
       isCustom: true,
     };
@@ -51,7 +51,7 @@ const NewCustomSetForm = () => {
     }
     dispatch(
       addCustomQuestionSet({
-        id: nanoid(),
+        id: `cus-${nanoid()}}`,
         title,
         questions: inputArray,
         isFavorite,

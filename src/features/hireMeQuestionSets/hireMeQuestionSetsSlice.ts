@@ -37,7 +37,7 @@ const hireMeQuestionSetsSlice = createSlice({
       const id = action.payload
       const set = state.hireMeQuestionSets.find(set => set.id === id)
       if (set) {
-        state.hireMeQuestionSetFavorites.push(set.id)
+        set.isFavorite = !set.isFavorite
       }
     }
   }

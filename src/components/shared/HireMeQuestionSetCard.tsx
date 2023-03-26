@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { CustomQuestionSet } from "@/features/customQuestionSets/customQuestionSetsSlice";
-import FavoriteToggle from "./ToggleFavorite";
+import FavoriteToggle from "./FavoriteToggle";
+import { HireMeQuestionSet } from "@/features/hireMeQuestionSets/hireMeQuestionSetsSlice";
 
 type Props = {
-  questionSet: CustomQuestionSet;
+  questionSet: HireMeQuestionSet;
 };
 
 const HireMeQuestionSetCard = ({ questionSet }: Props) => {
@@ -43,18 +43,6 @@ const HireMeQuestionSetCard = ({ questionSet }: Props) => {
           isFavorite={questionSet.isFavorite}
           id={questionSet.id}
         />
-        {questionSet.isCustom && (
-          <button
-            className="rounded-full border-2 border-transparent bg-orange-200 px-4 py-2 text-sm font-light transition hover:border-2 hover:border-orange-900/50"
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate(`custom-set/edit/${questionSet.id}`);
-            }}
-            type="button"
-          >
-            Edit
-          </button>
-        )}
       </div>
     </article>
   );
