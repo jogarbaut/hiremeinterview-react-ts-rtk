@@ -13,7 +13,7 @@ const About = (props: Props) => {
             <p className="font-light text-sm italic">Practice makes perfect</p>
             <ul className="list-disc ml-4 font-light">
               <li><span className="font-bold">Why was this project made? </span>This application was made because of the lack of tools for mock interviews in non-tech fields and early-round interviews</li>
-              <li><span className="font-bold">What are the default types of question sets? </span>The default question sets created by the HireMe Interview team are tailored towards non-techincal common interview questions that are applicable to a wide-range of fields and levels.</li>
+              <li><span className="font-bold">What are the default types of question sets? </span>The default question sets created by the HireMe Interview team are tailored towards non-techincal, common interview questions that are applicable to a wide-range of fields and levels.</li>
             </ul>
           </div>
           <div>
