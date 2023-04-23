@@ -9,6 +9,7 @@ import ErrorAlert from "@/components/shared/ErrorAlert";
 import { useNavigate } from "react-router-dom";
 import { HireMeQuestionSet } from "@/features/hireMeQuestionSets/hireMeQuestionSetsSlice";
 import HireMeQuestionSetCard from "@/components/shared/HireMeQuestionSetCard";
+import QuestionSetCard from "@/components/shared/QuestionSetCard";
 
 const Home = () => {
   const hireMeQuestionSets = useSelector(
@@ -103,7 +104,7 @@ const Home = () => {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {currentItems.map((set) => {
-              return <HireMeQuestionSetCard key={set.id} questionSet={set} />;
+              return <QuestionSetCard key={set.id} questionSet={set} />;
             })}
           </div>
           <div className="flex items-center justify-center py-6 md:justify-end">
@@ -144,7 +145,7 @@ const Home = () => {
           </div>
           <div className="grid gap-6 md:grid-cols-2">
             {customCurrentItems.map((set) => {
-              return <CustomQuestionSetCard key={set.id} questionSet={set} />;
+              return <QuestionSetCard key={set.id} questionSet={set} />;
             })}
           </div>
           <div className="flex items-center justify-center py-6 md:justify-end">

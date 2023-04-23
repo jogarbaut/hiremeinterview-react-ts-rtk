@@ -14,12 +14,14 @@ export interface HireMeQuestionSet {
   title: string;
   questions: HireMeQuestion[];
   isFavorite: boolean;
+  isCustom: boolean;
 }
 
 // Define interface for HireMeQuestion
 export interface HireMeQuestion {
   id: string;
   question: string;
+  isCustom: boolean;
 }
 
 // Define initial state of hireMeQuestionSets which pulls data from data folder
