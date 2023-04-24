@@ -1,3 +1,6 @@
+import Button from "@/components/shared/Button";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { StarIcon as StarIconSolid } from "@heroicons/react/24/solid";
 import { toggleFavoriteQuestionSet } from "@/features/customQuestionSets/customQuestionSetsSlice";
 import { toggleFavoriteHireMeQuestionSet } from "@/features/hireMeQuestionSets/hireMeQuestionSetsSlice";
 import { useDispatch } from "react-redux";
@@ -35,17 +38,27 @@ const QuestionActionBar = ({
       : dispatch(toggleFavoriteHireMeQuestionSet(questionSetId));
   };
 
-  const handleEditClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleEditClick = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.stopPropagation();
     navigate(`custom-set/edit/${questionSetId}`);
-  }
+  };
 
   return (
     <div className="flex w-full items-center justify-center gap-2">
-      <button onClick={(e) => handleStartClick(e)}>Start</button>
-      <button>{questionCount}</button>
-      <button onClick={(e) => handleFavoriteClick(e)}>Favorite</button>
-      {isCustom && <button onClick={(e) => handleEditClick(e)}>Edit</button>}
+      <Button onClick={(e) => handleStartClick(e)} primary>
+        Start
+      </Button>
+      <Button info>{`${questionCount.toString()} Items`}</Button>
+      <Button onClick={(e) => handleFavoriteClick(e)} favorite>
+        {isFavorite ? (
+          <StarIconSolid className="h-5 w-5 font-light" />
+        ) : (
+          <StarIconOutline className="h-5 w-5 font-light" />
+        )}
+      </Button>
+      {isCustom && <Button onClick={(e) => handleEditClick(e)} edit>Edit</Button>}
     </div>
   );
 };
