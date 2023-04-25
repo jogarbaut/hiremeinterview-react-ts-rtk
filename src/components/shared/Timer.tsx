@@ -2,8 +2,10 @@ import { useState, useRef } from "react";
 import { ClockIcon } from "@heroicons/react/24/outline";
 
 const Timer = () => {
-  const [seconds, setSeconds] = useState<number>(0);
+  const [time, setTime] = useState<number>(0);
+
   const timerId = useRef<ReturnType<typeof setInterval>>();
+
   const [startDisabled, setStartDisabled] = useState<boolean>(false);
   const [stopDisabled, setStopDisabled] = useState<boolean>(true);
   const [resetDisabled, setResetDisabled] = useState<boolean>(true);
@@ -13,7 +15,7 @@ const Timer = () => {
     setStopDisabled(false);
     setResetDisabled(false);
     timerId.current = setInterval(() => {
-      setSeconds((previousState) => previousState + 1);
+      setTime((previousState) => previousState + 1);
     }, 1000);
   };
 
@@ -29,20 +31,32 @@ const Timer = () => {
     setStopDisabled(true);
     setResetDisabled(true);
     stopTimer();
-    if (seconds) {
-      setSeconds(0);
+    if (time) {
+      setTime(0);
     }
   };
 
-  const formatMinutes = () => {
-    const formattedMinutes = `0${Math.floor(seconds / 60) % 60}`.slice(-2);
-    return formattedMinutes;
-  };
+  const formatTime = (minutes: number, seconds: number) => {
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds.toString();
+    const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes.toString();
+    return `${formattedMinutes}:${formattedSeconds}`;
+  }
 
-  const formatSeconds = () => {
-    const formattedSeconds = `0${seconds % 60}`.slice(-2);
-    return formattedSeconds
-  };
+  const updateTimer = () => {
+    const minutes = Math.floor(time / 60)
+    const seconds = Math.floor(time % 60)
+    return formatTime(minutes, seconds)
+  }
+
+  // const formatMinutes = () => {
+  //   const formattedMinutes = `0${Math.floor(seconds / 60) % 60}`.slice(-2);
+  //   return formattedMinutes;
+  // };
+
+  // const formatSeconds = () => {
+  //   const formattedSeconds = `0${seconds % 60}`.slice(-2);
+  //   return formattedSeconds
+  // };
 
   return (
     <div className="flex flex-col gap-2">
@@ -51,9 +65,9 @@ const Timer = () => {
           <ClockIcon />
         </div>
         <div className="text-center text-sm font-light gap-0.5 flex items-center justify-center">
-          <div className="min-w-[15px]">{formatMinutes()}</div>
-          <div className="">:</div>
-          <div className="min-w-[15px]">{formatSeconds()}</div>
+          <div className="min-w-[15px]">{updateTimer()}</div>
+          {/* <div className="">:</div>
+          <div className="min-w-[15px]">{formatSeconds()}</div> */}
 
         </div>
       </div>

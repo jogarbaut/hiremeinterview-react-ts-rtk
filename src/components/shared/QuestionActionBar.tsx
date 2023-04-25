@@ -58,7 +58,11 @@ const QuestionActionBar = ({
           <StarIconOutline className="h-5 w-5 font-light" />
         )}
       </Button>
-      {isCustom && <Button onClick={(e) => handleEditClick(e)} edit>Edit</Button>}
+      {isCustom && (
+        <Button onClick={(e) => handleEditClick(e)} edit>
+          Edit
+        </Button>
+      )}
     </div>
   );
 };

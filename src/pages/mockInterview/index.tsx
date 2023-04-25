@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Header from "@/components/shared/Header";
+import CountDownTimer from "@/components/shared/CountDownTimer";
 
 const MockInterview = () => {
   const { id } = useParams();
@@ -59,6 +60,7 @@ const MockInterview = () => {
             >
               <div className="mx-auto w-full">
                 <Timer />
+                {/* <CountDownTimer initialMinutes={0} initialSeconds={2}/> */}
               </div>
               <div className="mx-auto w-full">
                 <QuestionNavigation
