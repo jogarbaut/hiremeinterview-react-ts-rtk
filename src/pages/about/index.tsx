@@ -20,7 +20,7 @@ const About = (props: Props) => {
             <h2 className="font-bold text-xl">How to Use</h2>
             <ul className="list-disc ml-4 font-light">
               <li>Hover and click a question set or click the "start" button to load the mock interview interface</li>
-              <li>Use the timer tool to time your responses</li>
+              <li>Use the timer or stopwatch tool to improve your responses</li>
               <li>Navigate forward and backwards using the arrows</li>
               <li>Favorite question sets and click the "Favorites" filter to view</li>
             </ul>

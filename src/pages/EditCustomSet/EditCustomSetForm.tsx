@@ -97,14 +97,14 @@ const EditCustomSetForm = (props: Props) => {
         <button
           type="button"
           onClick={handleSubmit}
-          className="rounded-full border-2 border-transparent bg-green-200 px-4 py-2 text-sm font-bold transition hover:border-2 hover:border-green-900/50"
+          className="rounded-full border-2 border-transparent bg-green-200 px-4 py-2 text-sm font-light transition hover:border-2 hover:border-green-900/50"
         >
           Update Set
         </button>
         <button
           type="button"
           onClick={handleDelete}
-          className="rounded-full border-2 border-transparent bg-red-200 px-4 py-2 text-sm font-bold transition hover:border-2 hover:border-red-900/50"
+          className="rounded-full border-2 border-transparent bg-red-200 px-4 py-2 text-sm font-light transition hover:border-2 hover:border-red-900/50"
         >
           Delete Set
         </button>

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/store";
-import CustomQuestionSetCard from "@/components/shared/CustomQuestionSetCard";
 import { useEffect, useState } from "react";
 import Pagination from "@/components/shared/Pagination";
 import { CustomQuestionSet } from "@/features/customQuestionSets/customQuestionSetsSlice";
@@ -8,7 +7,6 @@ import Header from "@/components/shared/Header";
 import ErrorAlert from "@/components/shared/ErrorAlert";
 import { useNavigate } from "react-router-dom";
 import { HireMeQuestionSet } from "@/features/hireMeQuestionSets/hireMeQuestionSetsSlice";
-import HireMeQuestionSetCard from "@/components/shared/HireMeQuestionSetCard";
 import QuestionSetCard from "@/components/shared/QuestionSetCard";
 
 const Home = () => {
@@ -88,7 +86,7 @@ const Home = () => {
         {/* HireMeQuestionSet Display */}
         <div className="mx-auto flex w-5/6 max-w-5xl flex-col gap-6">
           <div className="flex flex-col justify-between gap-6 py-3 md:flex-row">
-            <div className="flex items-center justify-center md:justify-start w-full">
+            <div className="flex items-center justify-center md:justify-start w-full underline underline-offset-2">
               <h2>HireMe Interview Question Sets</h2>
             </div>
             <div className="flex items-center justify-center gap-3 md:justify-end">
@@ -121,8 +119,8 @@ const Home = () => {
         {/* Custom Question Display */}
         <div className="mx-auto flex w-5/6 max-w-5xl flex-col gap-12">
           <div className="flex flex-col justify-between gap-6 py-6 md:flex-row">
-            <div className="flex items-center justify-center gap-6 md:justify-start">
-              <h2>Custom Question Sets</h2>
+            <div className="flex items-center justify-center gap-6 md:justify-start underline underline-offset-2">
+              <h2>Your Custom Question Sets</h2>
             </div>
             <div className="flex items-center justify-center gap-3 md:justify-end">
             <button

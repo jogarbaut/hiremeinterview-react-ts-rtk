@@ -6,8 +6,8 @@ const Footer = (props: Props) => {
   const today = new Date()
 
   return (
-    <footer className="w-full bg-indigo-50 py-16">
-      <div className="w-5/6 mx-auto max-w-5xl">
+    <footer className="w-full bg-white py-16">
+      <div className="w-5/6 mx-auto max-w-5xl text-center">
       Copyright &copy; {today.getFullYear()} Jomel Bautista
       </div>
     </footer>

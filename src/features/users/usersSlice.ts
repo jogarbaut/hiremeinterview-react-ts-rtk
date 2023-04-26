@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface UserState {
-  value: User[];
+  user: [{
+    firstName: string,
+    lastName: string,
+    timer: string,
+    countdownDuration: {
+      minutes: number,
+      seconds: number,
+    }
+  }]
 }
 
-interface User {
-  id: string;
-  darkMode: boolean;
-}
+const userJSON = localStorage.getItem("user")
 
 const initialState: UserState = {
-  value: [
-    {
-      id: "1",
-      darkMode: false,
-    },
-  ],
+  user: userJSON !== null ? (JSON.parse(userJSON))["user"] : []
 };
 
 const usersSlice = createSlice({

@@ -31,8 +31,11 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
       <div className="flex w-full items-center justify-between bg-white py-4 drop-shadow">
         <div className="mx-auto flex w-5/6 items-center justify-between">
           <div className="flex w-full items-center justify-between gap-16">
+
             <div className="flex w-full items-center justify-between">
+            <h1>HireMe Mock Interview</h1>
               <div className="flex items-center justify-between gap-8 text-sm">
+
                 <NavLink
                   path="/"
                   page="All Sets"
@@ -45,12 +48,12 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
                 />
-                <NavLink
+                {/* <NavLink
                   path="/settings"
                   page="Settings"
                   selectedPage={selectedPage}
                   setSelectedPage={setSelectedPage}
-                />
+                /> */}
               </div>
               {/* <div>
                 <button type="button" onClick={handleThemeSwitch}>
