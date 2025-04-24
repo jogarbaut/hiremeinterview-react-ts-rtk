@@ -1,49 +1,25 @@
-import {
-  configureStore,
-  createListenerMiddleware,
-  isAnyOf,
-} from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import { listenerMiddleware } from "./listenerMiddleware";
+import { setupListeners } from "./listeners";
 import customQuestionSetsReducer from "../features/customQuestionSets/customQuestionSetsSlice";
 import usersReducer from "@/features/users/usersSlice";
-import {
-  addCustomQuestionSet,
-  updateCustomQuestionSet,
-  deleteCustomQuestionSet,
-  toggleFavoriteQuestionSet,
-} from "@/features/customQuestionSets/customQuestionSetsSlice";
-import hireMeQuestionSetsReducer, { toggleFavoriteHireMeQuestionSet } from "../features/hireMeQuestionSets/hireMeQuestionSetsSlice"
+import hireMeQuestionSetsReducer from "../features/hireMeQuestionSets/hireMeQuestionSetsSlice";
 
-const listenerMiddleware = createListenerMiddleware();
-
-listenerMiddleware.startListening({
-  matcher: isAnyOf(
-    addCustomQuestionSet,
-    updateCustomQuestionSet,
-    deleteCustomQuestionSet,
-    toggleFavoriteQuestionSet
-  ),
-  effect: (action, listenerApi) =>
-    localStorage.setItem(
-      "customQuestionSets",
-      JSON.stringify((listenerApi.getState() as RootState).customQuestionSets)
-    ),
-});
-
-listenerMiddleware.startListening({
-  matcher: isAnyOf(
-    toggleFavoriteHireMeQuestionSet
-  ),
-  effect: (action, listenerApi) => localStorage.setItem("hireMeQuestionSetFavorites", JSON.stringify((listenerApi.getState() as RootState).hireMeQuestionSets))
-})
-
+// Global Redux store configuration
+// Combines feature slice reduces and adds listener middleware
 export const store = configureStore({
   reducer: {
     customQuestionSets: customQuestionSetsReducer,
     hireMeQuestionSets: hireMeQuestionSetsReducer,
     users: usersReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().prepend(listenerMiddleware.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().prepend(listenerMiddleware.middleware),
 });
 
+// Setup side effect listeners once store is configured
+setupListeners()
+
+// Type exports
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
