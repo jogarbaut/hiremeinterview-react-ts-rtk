@@ -1,11 +1,7 @@
-import React from 'react'
-
-type Props = {}
+type Props = {};
 
 const NoMatch = (props: Props) => {
-  return (
-    <div>NoMatch</div>
-  )
-}
+    return <div>NoMatch</div>;
+};
 
-export default NoMatch
+export default NoMatch;

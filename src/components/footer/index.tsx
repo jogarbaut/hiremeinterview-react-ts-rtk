@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-type Props = {}
+type Props = {};
 
 const Footer = (props: Props) => {
-  const today = new Date()
+    const today = new Date();
 
-  return (
-    <footer className="w-full bg-white py-16">
-      <div className="w-5/6 mx-auto max-w-5xl text-center">
-      Copyright &copy; {today.getFullYear()} Jomel Bautista
-      </div>
-    </footer>
-  )
-}
+    return (
+        <footer className="w-full bg-white py-16">
+            <div className="mx-auto w-5/6 max-w-5xl text-center">
+                Copyright &copy; {today.getFullYear()} Jomel Bautista
+            </div>
+        </footer>
+    );
+};
 
-export default Footer
+export default Footer;
