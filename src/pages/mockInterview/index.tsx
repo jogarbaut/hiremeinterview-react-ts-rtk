@@ -1,76 +1,90 @@
 import { RootState } from '@/app/store';
-import FavoriteToggle from '@/components/shared/FavoriteToggle';
-import QuestionNavigation from '@/components/shared/QuestionNavigation';
-import Timer from '@/components/shared/Timer';
+import { FavoriteToggle, QuestionNavigation } from '@/components/features';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import Header from '@/components/shared/Header';
-import CountDownTimer from '@/components/shared/CountDownTimer';
-import Button from '@/components/shared/Button';
+import { Header } from '@/components/layout';
+import { Button, TimerBase } from '@/components/shared';
+
+/**
+ * MockInterview Page
+ * -------------------
+ * Simulates a mock interview session.
+ * Allows user to toggle between stopwatch and countdown modes, navigate through questions, and favorite sets.
+ */
 
 const MockInterview = () => {
-    const { id } = useParams();
-    let questionSets;
-    if (id?.startsWith('cus-')) {
-        questionSets = useSelector((state: RootState) => state.userQuestionSets.userQuestionSets);
-    } else {
-        questionSets = useSelector(
-            (state: RootState) => state.defaultQuestionSets.defaultQuestionSets,
-        );
-    }
+    const { id } = useParams<{ id: string }>();
+    const [indexCurrentQuestion, setIndexCurrentQuestion] = useState(0);
+    const [displayTimer, setDisplayTimer] = useState(false);
 
-    const questionSet = questionSets.find((questionsSet) => questionsSet.id === id);
+    const defaultQuestionSets = useSelector(
+        (state: RootState) => state.defaultQuestionSets.defaultQuestionSets,
+    );
+    const userQuestionSets = useSelector(
+        (state: RootState) => state.userQuestionSets.userQuestionSets,
+    );
 
-    if (!questionSet) return <p>Question Set Not Found</p>;
+    const questionSets = id?.startsWith('cus-') ? userQuestionSets : defaultQuestionSets;
+    const questionSet = questionSets.find((set) => set.id === id);
 
-    const [indexCurrentQuestion, setIndexCurrentQuestion] = useState<number>(0);
-    const [indexLastQuestion, setIndexLastQuestion] = useState<number>(1);
-    const [controlsToggled, setControlsToggled] = useState<boolean>(true);
-    const [displayTimer, setDisplayTimer] = useState<boolean>(false);
+    const currentQuestion =
+        questionSet?.questions[indexCurrentQuestion]?.question || 'No Question Found';
 
-    const currentQuestion = questionSet.questions[indexCurrentQuestion].question;
+    const indexLastQuestion = questionSet ? questionSet.questions.length - 1 : 0;
+
+    const handleTimerToggle = () => {
+        setDisplayTimer((prev) => !prev);
+    };
 
     useEffect(() => {
-        if (questionSet) {
-            setIndexLastQuestion(questionSet.questions.length - 1);
-        }
+        window.scrollTo(0, 0); // Scroll to top when navigating here
     }, []);
 
-    const handleTimerToggleClick = () => {
-        setDisplayTimer((previousState) => !previousState);
-    };
+    if (!questionSet) {
+        return (
+            <section
+                id="mockInterview"
+                className="flex h-full flex-col items-center justify-center"
+            >
+                <Header>Mock Interview</Header>
+                <p className="mt-12 text-lg">Question Set Not Found</p>
+            </section>
+        );
+    }
 
     return (
         <section id="mockInterview" className="flex h-full flex-col">
             <Header>Mock Interview</Header>
             <div className="flex w-full flex-grow items-center justify-center bg-indigo-50">
                 <div className="mx-auto w-5/6 max-w-5xl">
-                    <div className="my-12 flex w-full flex-col gap-12 rounded-lg bg-white p-12">
+                    <div className="my-12 flex w-full flex-col gap-12 rounded-lg bg-white p-12 shadow-md">
+                        {/* Top Bar - Timer Toggle + Favorite */}
                         <div className="flex w-full items-center justify-between">
-                            <Button secondary onClick={() => handleTimerToggleClick()}>
+                            <Button secondary onClick={handleTimerToggle}>
                                 {displayTimer ? 'Timer' : 'Stopwatch'}
                             </Button>
                             <FavoriteToggle
-                                isFavorite={questionSet?.isFavorite}
-                                id={questionSet?.id}
+                                isFavorite={questionSet.isFavorite}
+                                id={questionSet.id}
                             />
                         </div>
+
+                        {/* Current Question */}
                         <div className="flex items-center justify-center text-center text-lg sm:text-2xl md:my-16 md:text-3xl lg:text-4xl">
-                            {questionSet && currentQuestion}
+                            {currentQuestion}
                         </div>
-                        <div
-                            className={`${
-                                controlsToggled ? '' : 'hidden'
-                            } flex flex-col items-center justify-center gap-4 transition duration-500`}
-                        >
-                            <div className="bg- mx-auto w-full">
+
+                        {/* Timer and Navigation */}
+                        <div className="flex flex-col items-center justify-center gap-6">
+                            <div className="mx-auto w-full">
                                 {displayTimer ? (
-                                    <Timer />
+                                    <TimerBase mode="up" />
                                 ) : (
-                                    <CountDownTimer initialMinutes={2} initialSeconds={0} />
+                                    <TimerBase mode="down" initialMinutes={0} initialSeconds={10} />
                                 )}
                             </div>
+
                             <div className="mx-auto w-full">
                                 <QuestionNavigation
                                     indexCurrentQuestion={indexCurrentQuestion}

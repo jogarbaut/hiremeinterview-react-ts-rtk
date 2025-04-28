@@ -1,4 +1,4 @@
-import Header from '@/components/shared/Header';
+import Header from '@/components/layout/Header';
 import NewUserSetForm from './NewUserSetForm';
 
 const UserSet = () => {

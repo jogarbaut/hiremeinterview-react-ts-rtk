@@ -1,4 +1,4 @@
-import Header from '@/components/shared/Header';
+import Header from '@/components/layout/Header';
 import EditUserSetForm from './EditUserSetForm';
 type Props = {};
 

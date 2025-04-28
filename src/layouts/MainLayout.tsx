@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import Navbar from '@/components/navbar';
+import Navbar from '@/components/layout/Navbar/Navbar';
 import { SelectedPage } from '@/components/shared/types';
 import { useState } from 'react';
-import Footer from '@/components/footer';
+import Footer from '@/components/layout/Footer/Footer';
 
 // Type definition for MainLayout props
 type MainLayoutProps = {};
