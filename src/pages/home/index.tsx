@@ -31,7 +31,7 @@ const Home = () => {
     };
 
     const handleEdit = (id: string) => {
-        navigate(`custom-set/edit/${id}`);
+        navigate(`user-set/edit/${id}`);
     };
 
     const handleCreateNewSet = () => {

@@ -46,17 +46,17 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                                     selectedPage={selectedPage}
                                     setSelectedPage={setSelectedPage}
                                 />
-                                <NavLink
+                                {/* <NavLink
                                     path="/settings"
                                     page="Settings"
                                     selectedPage={selectedPage}
                                     setSelectedPage={setSelectedPage}
-                                />
+                                /> */}
                             </div>
                             <div>
-                                <button type="button" onClick={handleThemeSwitch}>
+                                {/* <button type="button" onClick={handleThemeSwitch}>
                                     Dark Mode
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                     </div>
