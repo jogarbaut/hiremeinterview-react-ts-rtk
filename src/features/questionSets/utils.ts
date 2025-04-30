@@ -1,10 +1,3 @@
-import { UserQuestionSet } from '@/features/userQuestionSets/userQuestionSetsTypes';
+import { QuestionSet } from '@/features/questionSets/questionSetsTypes';
 
-export function isUserQuestionSet(set: unknown): set is UserQuestionSet {
-    return (
-        typeof set === 'object' &&
-        set !== null &&
-        'isCustom' in set &&
-        (set as any).isCustom === true
-    );
-}
+export const isUserSet = (set: QuestionSet) => set.source === 'user';

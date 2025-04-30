@@ -1,8 +1,7 @@
-import { toggleFavoriteUserQuestionSet } from '@/features/userQuestionSets/userQuestionSetsSlice';
-import { toggleFavoriteDefaultQuestionSet } from '@/features/defaultQuestionSets/defaultQuestionSetsSlice';
+import { toggleFavoriteQuestionSet } from '@/features/questionSets/questionSetsSlice';
 import { StarIcon as StarIconOutline } from '@heroicons/react/24/outline';
 import { StarIcon as StarIconSolid } from '@heroicons/react/24/solid';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '@/app/hooks';
 
 type Props = {
     isFavorite: boolean;
@@ -10,14 +9,10 @@ type Props = {
 };
 
 const FavoriteToggle = ({ isFavorite, id }: Props) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const handleToggle = () => {
-        if (id.startsWith('cus-')) {
-            dispatch(toggleFavoriteUserQuestionSet(id));
-        } else {
-            dispatch(toggleFavoriteDefaultQuestionSet(id));
-        }
+        dispatch(toggleFavoriteQuestionSet(id));
     };
 
     return (

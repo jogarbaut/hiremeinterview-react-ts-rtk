@@ -1,16 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { listenerMiddleware } from './listenerMiddleware';
 import { setupListeners } from './listeners';
-import userQuestionSetReducer from '@/features/userQuestionSets/userQuestionSetsSlice';
-import defaultQuestionSetsReducer from '@/features/defaultQuestionSets/defaultQuestionSetsSlice';
+import questionSetsReducer from '@/features/questionSets/questionSetsSlice';
 import usersReducer from '@/features/users/usersSlice';
 
 // Global Redux store configuration
 // Combines feature slice reduces and adds listener middleware
 export const store = configureStore({
     reducer: {
-        userQuestionSets: userQuestionSetReducer,
-        defaultQuestionSets: defaultQuestionSetsReducer,
+        questionSets: questionSetsReducer,
         users: usersReducer,
     },
     middleware: (getDefaultMiddleware) =>

@@ -1,13 +1,14 @@
 import { startAppListening as rawStartAppListening } from './listenerMiddleware';
 import { TypedStartListening, isAnyOf } from '@reduxjs/toolkit';
 import {
-    addUserQuestionSet,
-    deleteUserQuestionSet,
-    updateUserQuestionSet,
-    toggleFavoriteUserQuestionSet,
-} from '@/features/userQuestionSets/userQuestionSetsSlice';
-
-import { toggleFavoriteDefaultQuestionSet } from '@/features/defaultQuestionSets/defaultQuestionSetsSlice';
+    addQuestionSet,
+    updateQuestionSet,
+    deleteQuestionSet,
+    toggleFavoriteQuestionSet,
+    addQuestionToSet,
+    deleteQuestionFromSet,
+    copyQuestionToUserSet,
+} from '@/features/questionSets/questionSetsSlice';
 import { RootState, AppDispatch } from './store';
 
 const startAppListening: TypedStartListening<RootState, AppDispatch> = rawStartAppListening;
@@ -17,26 +18,20 @@ export function setupListeners() {
     //  Save custom question sets
     startAppListening({
         matcher: isAnyOf(
-            addUserQuestionSet,
-            updateUserQuestionSet,
-            deleteUserQuestionSet,
-            toggleFavoriteUserQuestionSet,
+            addQuestionSet,
+            updateQuestionSet,
+            deleteQuestionSet,
+            toggleFavoriteQuestionSet,
+            addQuestionToSet,
+            deleteQuestionFromSet,
+            copyQuestionToUserSet,
         ),
         effect: (action, api) => {
-            const state = api.getState().userQuestionSets;
-            localStorage.setItem('userQuestionSets', JSON.stringify(state));
-        },
-    });
+            const allSets = api.getState().questionSets.questionSets;
 
-    // Save question set to favorites
-    startAppListening({
-        type: toggleFavoriteDefaultQuestionSet.type,
-        effect: (action, api) => {
-            const state = api.getState();
-            const defaultSets = state.defaultQuestionSets.defaultQuestionSets;
-            const favoriteIds = defaultSets.filter((set) => set.isFavorite).map((set) => set.id);
-
-            localStorage.setItem('defaultQuestionSetFavorites', JSON.stringify(favoriteIds));
+            // Persist user-defined sets
+            const userSets = allSets.filter((set) => set.source === 'user');
+            localStorage.setItem('userQuestionSets', JSON.stringify(userSets));
         },
     });
 }

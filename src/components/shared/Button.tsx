@@ -9,6 +9,7 @@ type Props = {
     edit?: boolean;
     viewOnly?: boolean;
     children: ReactNode;
+    disabled?: boolean;
     onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 };
 
@@ -20,6 +21,7 @@ const Button = ({
     info,
     edit,
     viewOnly,
+    disabled,
     onClick,
 }: Props) => {
     const conditionalClassName = classNames(
@@ -32,12 +34,16 @@ const Button = ({
             'bg-orange-200 hover:border-orange-900/50': edit,
             'cursor-default hover:border-transparent': viewOnly,
         },
+        {
+            'bg-slate-100 text-slate-400 cursor-not-allowed hover:border-transparent': disabled,
+        },
     );
 
     return (
         <button
             onClick={viewOnly ? undefined : onClick}
             type="button"
+            disabled={disabled}
             className={conditionalClassName}
         >
             {children}

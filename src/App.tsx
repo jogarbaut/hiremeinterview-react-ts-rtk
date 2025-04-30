@@ -4,8 +4,8 @@ import Layout from '@/layouts/MainLayout';
 import About from '@/pages/about';
 import MockInterview from '@/pages/mockInterview';
 import NoMatch from '@/pages/noMatch';
-import UserSet from '@/pages/UserSet';
-import EditUserSet from '@/pages/EditUserSet';
+import UserSet from '@/pages/user-set';
+import EditUserSetPage from '@/pages/user-set/edit';
 
 function App() {
     return (
@@ -15,7 +15,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="mock-interview/:id" element={<MockInterview />} />
                     <Route path="user-set" element={<UserSet />} />
-                    <Route path="user-set/edit/:id" element={<EditUserSet />} />
+                    <Route path="user-set/edit/:id" element={<EditUserSetPage />} />
                     <Route path="about" element={<About />} />
                     <Route path="*" element={<NoMatch />} />
                 </Route>

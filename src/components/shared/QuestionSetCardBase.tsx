@@ -25,7 +25,7 @@ type Props = {
     children?: ReactNode;
 };
 
-const QuestionSetCardBase = ({ id, title, questionCount, onCardClick, children }: Props) => {
+const QuestionSetCardBase = ({ id, title, onCardClick, children }: Props) => {
     const handleClick = () => {
         onCardClick(id);
     };
